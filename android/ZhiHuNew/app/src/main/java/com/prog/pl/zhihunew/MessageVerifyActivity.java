@@ -42,42 +42,29 @@ public class MessageVerifyActivity extends ActionBarActivity {
     private String phone="";
     private String name="";
     private String password="";
-    /**
-     * mob.com创建应用时候生成APP_KEY
-     */
-    private static String APP_KEY = "18118704a6c11";
-    /**
-     * 　APP_SECRET
-     */
-    private static String APP_SECRET = "76ab30f65c0e881a9a22e921264fe50a";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_verify);
-//        SMSSDK.initSDK(this, APP_KEY, APP_SECRET);//初始化短信验证工具
-        btnVerify=(Button)findViewById(R.id.btn_messageverify_verify);
-        txtVerCode=(EditText)findViewById(R.id.edit_messageverify_verifycode);
-        txtTime=(TextView)findViewById(R.id.text_messageverify_time);
+        btnVerify = (Button) findViewById(R.id.btn_messageverify_verify);
+        txtVerCode = (EditText) findViewById(R.id.edit_messageverify_verifycode);
+        txtTime = (TextView) findViewById(R.id.text_messageverify_time);
         Bundle extras = getIntent().getExtras();
         phone = extras.getString("phone");
         password = extras.getString("password");
         name = extras.getString("name");
         btnVerify.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String verifycode=txtVerCode.getText().toString().trim();
-                if(verifycode.length()!=0){
-                    if(verifycode.length()==4){
-                        mDialog = new ProgressDialog(MessageVerifyActivity.this);
-                        mDialog.setTitle("验证");
-                        mDialog.setMessage("正在登陆服务器，请稍后...");
-                        mDialog.show();
-                        Thread verifyThread=new Thread(new VerifyThread());
+                String verifycode = txtVerCode.getText().toString().trim();
+                if (verifycode.length() != 0) {
+                    if (verifycode.length() == 4) {
+                        Thread verifyThread = new Thread(new VerifyThread());
                         verifyThread.start();
-                    }else{
+                    } else {
                         Toast.makeText(MessageVerifyActivity.this, "请输入完整验证码", Toast.LENGTH_LONG).show();
                         txtVerCode.requestFocus();
                     }
-                }else{
+                } else {
                     Toast.makeText(MessageVerifyActivity.this, "请输入验证码", Toast.LENGTH_LONG).show();
                     txtVerCode.requestFocus();
                 }
@@ -110,51 +97,60 @@ public class MessageVerifyActivity extends ActionBarActivity {
 
         return loginValidate;
     }
-
-
-    // Handler
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
-                    mDialog.cancel();
-                    String rrString = responseMsg;
-                    Toast.makeText(getApplicationContext(), "注册成功！",
-                          Toast.LENGTH_SHORT).show();
-                    Intent logintent=new Intent(MessageVerifyActivity.this,LoginActivity.class);
-                    startActivity(logintent);
+                    Toast.makeText(getApplicationContext(), "验证成功",
+                            Toast.LENGTH_SHORT).show();
+                    Intent verifySuccessIntent=new Intent(MessageVerifyActivity.this,RogisterActivity.class);
+                    startActivity(verifySuccessIntent);
                     finish();
                     break;
                 case 1:
-                    mDialog.cancel();
-                    Toast.makeText(getApplicationContext(), "注册失败",
+
+                    Toast.makeText(getApplicationContext(), "验证失败",
                             Toast.LENGTH_SHORT).show();
-                    Intent rogintent=new Intent(MessageVerifyActivity.this,RogisterActivity.class);
-                    startActivity(rogintent);
+                    Intent verifyFailIntent=new Intent(MessageVerifyActivity.this,RogisterActivity.class);
+                    startActivity(verifyFailIntent);
                     finish();
                     break;
+                case 2:
+
+                    Toast.makeText(getApplicationContext(), "连接服务器失败",
+                            Toast.LENGTH_SHORT).show();
+                    Intent contactFailIntent=new Intent(MessageVerifyActivity.this,RogisterActivity.class);
+                    startActivity(contactFailIntent);
+                    finish();
+                    break;
+
             }
 
         }
     };
-
-    // 验证线程
+    // RogisterThread线程类
     class VerifyThread implements Runnable {
-
         @Override
         public void run() {
-            String code=txtVerCode.getText().toString();
+            String verifyCode=txtVerCode.getText().toString();
             // URL合法，但是这一步并不验证密码是否正确
-            boolean loginValidate = contactServer(phone, password,name,code);
+            boolean loginValidate = contactServer(phone, password,name,verifyCode);
 
             Message msg = handler.obtainMessage();
-            if (loginValidate&&responseMsg.equals("rogister success")) {
+            if (loginValidate) {
+                String jjString = responseMsg;
+                if (jjString.equals("rogister success")) {
                     msg.what = 0;
                     handler.sendMessage(msg);
+                } else {
+                    msg.what = 1;
+                    handler.sendMessage(msg);
+                }
             } else {
-                msg.what = 1;
+                msg.what = 2;
                 handler.sendMessage(msg);
             }
         }
     }
+
 }

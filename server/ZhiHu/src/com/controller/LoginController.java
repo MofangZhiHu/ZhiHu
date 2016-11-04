@@ -32,7 +32,7 @@ public class LoginController extends AbstractController {
 			String password = request.getParameter("password");
 			System.out.println("::::::::" + phoneormail + ":kkkk:" + password);
 			// 验证
-			String logindVerifySql = "select * from UserInfo where MobilePhone='" + phoneormail.trim()
+			String logindVerifySql = "select * from UserInfo where UserPhoneNum='" + phoneormail.trim()
 					+ "' and PassWord='" + password.trim() + "'";
 			DbHandle dbhan = new DbHandle();
 
@@ -47,7 +47,7 @@ public class LoginController extends AbstractController {
 		// 判断手机号是否已被注册
 		if (action.equals("phoneverify")) {
 			String phone = request.getParameter("phone");
-			String phoneVerifySql = "select * from UserInfo where MobilePhone='" + phone.trim() + "'";
+			String phoneVerifySql = "select * from UserInfo where UserPhoneNum='" + phone.trim() + "'";
 			DbHandle dbhan = new DbHandle();
 
 			PrintWriter out = response.getWriter();
@@ -74,7 +74,7 @@ public class LoginController extends AbstractController {
 			String status = jo.getString("status");
 			System.out.println("status: " + status);
 			if (status.equals("200")) {
-				String addUserSql = "insert into UserInfo (UserName,PassWord,MobilePhone) values ('" + name + "','"
+				String addUserSql = "insert into UserInfo (UserName,PassWord,UserPhoneNum) values ('" + name + "','"
 						+ password + "','" + phone + "')";
 				System.out.println(addUserSql);
 				DbHandle dbhan = new DbHandle();
