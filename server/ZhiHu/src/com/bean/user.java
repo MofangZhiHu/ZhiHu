@@ -1,5 +1,5 @@
 package com.bean;
 
-public class user {
+public class User {
 
 }

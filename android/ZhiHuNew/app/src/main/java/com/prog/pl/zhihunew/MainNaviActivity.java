@@ -32,6 +32,7 @@ public class MainNaviActivity extends Activity implements OnClickListener
     private SiXinFragment fragSixin;
     private GengDuoFragment fragGengduo;
 
+    private String phone;
     private ImageView imgZonglan,imgLiulan,imgTongzhi,imgSixin,imgGengduo;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,7 +40,8 @@ public class MainNaviActivity extends Activity implements OnClickListener
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main_navi);
-
+        Bundle extras = getIntent().getExtras();
+        phone=extras.getString("phone");
         imgZonglan=(ImageView) findViewById(R.id.img_bottombar_zonglan);
         imgLiulan=(ImageView)findViewById(R.id.img_bottombar_liulan);
         imgTongzhi=(ImageView) findViewById(R.id.img_bottombar_tongzhi);

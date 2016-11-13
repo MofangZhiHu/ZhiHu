@@ -92,6 +92,7 @@ public class LoginActivity extends ActionBarActivity {
                     Toast.makeText(getApplicationContext(), "登录成功！",
                             Toast.LENGTH_SHORT).show();
                    Intent intent=new Intent(LoginActivity.this,MainNaviActivity.class);
+                    intent.putExtra("phone", txtPhoneormail.getText().toString());
                    startActivity(intent);
                     finish();
                     break;

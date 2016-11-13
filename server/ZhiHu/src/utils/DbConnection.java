@@ -28,6 +28,9 @@ public class DbConnection {
 		String url = "jdbc:sqlserver://localhost:1433;databaseName=ZhiHuNewDb";
 		String userName = "pengli";
 		String userPwd = "penli2008";
+//		String url = "jdbc:sqlserver://123.207.18.20:1433;databaseName=ZhiHuNewDb";
+//		String userName = "sa";
+//		String userPwd = "432@uestc";
 
 		try {
 			conn = DriverManager.getConnection(url, userName, userPwd);

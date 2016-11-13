@@ -27,6 +27,7 @@ import com.prog.pl.utils.HttpUtil;
 import com.prog.pl.zhihunew.LoginActivity;
 import com.prog.pl.zhihunew.MainNaviActivity;
 import com.prog.pl.zhihunew.R;
+import com.prog.pl.zhihunew.WriteQuestionActivity;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -59,7 +60,7 @@ public class ZongLanFragment extends Fragment
     private ListView listView;  //声明一个ListView对象
     private List<Question> mlistQue = new ArrayList<Question>();  //声明一个list，动态存储要显示的信息
     private String responseMsg = "";
-    private FloatingActionButton addFab;
+    private FloatingActionButton addFab,subqeusFab;
     private TextView fuzzyText;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +81,7 @@ public class ZongLanFragment extends Fragment
         super.onActivityCreated(savedInstanceState);
         addFab = (FloatingActionButton) getActivity().findViewById(R.id.imgbtn_zonglan_add);
         fuzzyText=(TextView) getActivity().findViewById(R.id.text_zonglan_fuzzy);
+        subqeusFab=(FloatingActionButton)getActivity().findViewById(R.id.imgbtn_zonglan_subques);
         assert addFab != null;
         addFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +93,16 @@ public class ZongLanFragment extends Fragment
                else{
                     closeMenu(v);
                 }
+            }
+        });
+        assert subqeusFab != null;
+        subqeusFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+               Intent intent=new Intent(getActivity(),WriteQuestionActivity.class);
+                intent.putExtra("phone",getActivity().getIntent().getExtras().getString("phone"));
+                startActivity(intent);
             }
         });
         fuzzyText.setOnClickListener(new View.OnClickListener() {

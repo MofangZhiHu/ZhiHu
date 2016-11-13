@@ -5,11 +5,10 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
+import net.sf.json.JSONObject;
 import utils.DbHandle;
 import utils.GetMessageVerify;
 
@@ -70,8 +69,9 @@ public class LoginController extends AbstractController {
 					"appkey=" + appkey + "&phone=" + phone + "&zone=" + zone + "&&code=" + code + "");
 			System.out.println(result);
 			System.out.println("https://webapi.sms.mob.com/sms/verify"+"appkey=" + appkey + "&phone=" + phone + "&zone=" + zone + "&&code=" + code + "");
-			JSONObject jo = new JSONObject(result);
-			String status = jo.getString("status");
+			JSONObject jsonObject = JSONObject.fromObject(result);
+            String status = jsonObject.getString("status");
+			//String status = jo.getString("status");
 			System.out.println("status: " + status);
 			if (status.equals("200")) {
 				String addUserSql = "insert into UserInfo (UserName,PassWord,UserPhoneNum) values ('" + name + "','"

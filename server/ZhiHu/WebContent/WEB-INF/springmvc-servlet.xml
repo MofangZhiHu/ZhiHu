@@ -20,6 +20,8 @@
      <!-- 配置controller -->
      <bean name="/login.do" class="com.controller.LoginController">
      </bean>
+     <bean name="/zonglan.do" class="com.controller.ZongLanController">
+     </bean>
      
     <!-- 配置视图解析器 --> 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
