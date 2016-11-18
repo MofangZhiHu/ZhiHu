@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:background="#f8f8f8"
+    android:weightSum="1">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center|left"
+        android:layout_marginLeft="16dp">
+    <ImageButton android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/img_writequestion_cancel"
+        android:background="@drawable/chenghao"
+        />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
+    <ImageButton android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/img_writequestion_submit"
+        android:background="@drawable/submit"
+        android:layout_gravity="center|right"
+        android:layout_marginRight="16dp"
+        />
+        </LinearLayout>
+</LinearLayout>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:background="#f8f8f8">
+                 <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:orientation="vertical" />
+                <EditText android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/edit_writequestion_ques"
+                    android:layout_gravity="bottom"
+                    android:hint="问题"/>
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="#ffffff">
+
+                <EditText android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_writequestion_topic"
+                    android:layout_gravity="bottom"
+                    android:hint="话题"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="#ffffff">
+
+                <EditText android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_writequestion_supplement"
+                    android:layout_gravity="bottom"
+                    android:background="@null"
+                    android:hint="添加问题的补充说明..."/>
+
+
+            </LinearLayout>
+
+            </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>
