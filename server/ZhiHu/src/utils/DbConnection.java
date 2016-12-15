@@ -25,9 +25,12 @@ public class DbConnection {
 
 	// 取得数据库连接
 	public Connection getConnection() {
-		String url = "jdbc:sqlserver://localhost:1433;databaseName=ZhiHuDb";
+		String url = "jdbc:sqlserver://localhost:1433;databaseName=ZhiHuNewDb";
 		String userName = "pengli";
 		String userPwd = "penli2008";
+//		String url = "jdbc:sqlserver://123.207.18.20:1433;databaseName=ZhiHuNewDb";
+//		String userName = "sa";
+//		String userPwd = "432@uestc";
 
 		try {
 			conn = DriverManager.getConnection(url, userName, userPwd);

@@ -38,8 +38,8 @@ public class HttpUtil {
     //public static final String BASE_URL = "http://192.168.1.100:8080/LibraryManage/";
     public static final String BASE_URL = "http://10.0.3.2:8080/ZhiHu/";
     public static final String FILE_PATH = "/sdcard/zhihu";
-    private static final int REQUEST_TIMEOUT = 3000;// 设置请求超时2秒钟
-    private static final int SO_TIMEOUT = 3000; // 设置等待数据超时时间2秒钟
+    private static final int REQUEST_TIMEOUT = 8000;// 设置请求超时8秒钟
+    private static final int SO_TIMEOUT = 8000; // 设置等待数据超时时间8秒钟
 
     public static HttpGet getHttpGet(String url) {
         HttpGet request = new HttpGet(url);

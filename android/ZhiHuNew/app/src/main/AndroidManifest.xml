@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -34,6 +35,10 @@
         <activity
             android:name=".RogisterActivity"
             android:label="@string/title_activity_rogister" />
-        <activity android:name=".MessageVerifyActivity"></activity>
+        <activity android:name=".MessageVerifyActivity" />
+        <activity android:name=".MainNaviActivity" />
+        <activity android:name=".WriteQuestionActivity" />
+        <activity android:name=".ShowQuestion"></activity>
     </application>
+
 </manifest>
